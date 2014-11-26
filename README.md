@@ -1,11 +1,6 @@
 Cron log
 =============
-
 Component for logging cron jobs
-Yii2 Image Component
-==========
-
-Provides methods for the dynamic manipulation of images. Various image formats such as JPEG, PNG, and GIF can be resized, cropped, rotated.
 
 To use this extension, add to actions in your controller below code:
 
