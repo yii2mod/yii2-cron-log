@@ -7,10 +7,6 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Cron Schedule Log';
-
-$this->params['breadcrumbs'][] = ['label' => \yii\helpers\Inflector::titleize($this->context->module->id),
-    'url' => $this->context->module->id
-];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cron-schedule-model-index">
