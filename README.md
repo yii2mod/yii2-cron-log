@@ -12,6 +12,17 @@ To use this extension, add to actions in your controller below code:
         ];
     }
 ```
+Error handler must be defined inside console config, it will be used to log exceptions into database.
+```php
+'components' => [
+        'errorHandler' => [
+            'class' => 'yii2mod\cron\components\ErrorHandler',
+        ],
+        'mutex' => [
+            'class' => 'yii\mutex\FileMutex'
+        ],
+    ],
+    ```
 
 Installation
 ------------
