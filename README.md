@@ -22,7 +22,7 @@ Error handler must be defined inside console config, it will be used to log exce
             'class' => 'yii\mutex\FileMutex'
         ],
     ],
-    ```
+```
 
 Installation
 ------------
