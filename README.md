@@ -25,6 +25,16 @@ run
 ```php
 php yii migrate/up --migrationPath=@yii2mod/cron/migrations
 ```
+Please note that messages are wrapped with ```Yii::t()``` to support message translations, you should define default message source for them if you don't use i18n.
+```php
+'i18n' => [
+    'translations' => [
+        '*' => [
+            'class' => 'yii\i18n\PhpMessageSource'
+        ],
+    ],
+],
+```
 
 Usage
 ------------
