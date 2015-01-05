@@ -24,7 +24,7 @@ class CronScheduleModel extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'CronSchedule';
+        return '{{%CronSchedule}}';
     }
 
     /**
