@@ -20,7 +20,7 @@ class ErrorHandler extends \yii\console\ErrorHandler
      *
      * @param \Exception $exception the exception to be logged
      */
-    protected function logException($exception)
+    public function logException($exception)
     {
         $category = get_class($exception);
         if ($exception instanceof HttpException) {
