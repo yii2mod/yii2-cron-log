@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: semenov
- * Date: 08.07.14
- * Time: 11:13
- */
-
 namespace yii2mod\cron\behaviors;
 
 use yii\base\Behavior;
@@ -36,7 +29,7 @@ use yii\console\Controller;
  * @author  Klimov Paul <klimov@zfort.com>
  * @author  Dmitry Semenov <disemx@gmail.com>
  * @version $Id$
- * @package zfort\mutex\behavior
+ * @package yii2mod\cron\behaviors
  * @since   1.0
  */
 class MutexConsoleCommandBehavior extends Behavior
@@ -49,11 +42,7 @@ class MutexConsoleCommandBehavior extends Behavior
      * @var array list of action names, which mutex should be applied to.
      */
     public $mutexActions = array();
-    /**
-     * @var integer exit code, which should be returned by console command in case it
-     * is terminated due to mutex lock.
-     */
-    public $mutexExitCode = 100;
+
 
     /**
      * @inheritdoc
@@ -83,7 +72,7 @@ class MutexConsoleCommandBehavior extends Behavior
      */
     protected function composeMutexName($action)
     {
-        return $this->getOwner()->getName() . '-' . $action;
+        return $this->owner->getUniqueId() . '-' . $action;
     }
 
     /**
@@ -98,34 +87,31 @@ class MutexConsoleCommandBehavior extends Behavior
         return in_array(strtolower($action), $this->mutexActions);
     }
 
+
     /**
-     * Responds to {@link CConsoleCommand::onBeforeAction} event.
-     * Override this method and make it public if you want to handle the corresponding event of the {@link CBehavior::owner owner}.
-     *
-     * @param CConsoleCommandEvent $event event parameter
+     * @param $event
+     * @return bool
      */
     public function beforeAction($event)
     {
-        if ($this->checkIsMutexAction($event->action)) {
-            $mutexName = $this->composeMutexName($event->action);
+        if ($this->checkIsMutexAction($event->action->id)) {
+            $mutexName = $this->composeMutexName($event->action->id);
             if (!$this->getMutex()->acquire($mutexName)) {
                 echo "Execution terminated: command is already running.\n";
-                $event->stopCommand = true;
-                $event->exitCode = $this->mutexExitCode;
+                $event->isValid = false;
+                return false;
             }
         }
     }
 
+
     /**
-     * Responds to {@link CConsoleCommand::onAfterAction} event.
-     * Override this method and make it public if you want to handle the corresponding event of the {@link CBehavior::owner owner}.
-     *
-     * @param CConsoleCommandEvent $event event parameter
+     * @param $event
      */
     public function afterAction($event)
     {
-        if ($this->checkIsMutexAction($event->action)) {
-            $mutexName = $this->composeMutexName($event->action);
+        if ($this->checkIsMutexAction($event->action->id)) {
+            $mutexName = $this->composeMutexName($event->action->id);
             $this->getMutex()->release($mutexName);
         }
     }
