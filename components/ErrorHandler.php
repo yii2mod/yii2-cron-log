@@ -1,8 +1,11 @@
 <?php
+
 namespace yii2mod\cron\components;
 
 use Yii;
 use yii\web\HttpException;
+use yii2mod\cron\models\CronScheduleModel;
+use yii2mod\cron\models\enumerables\CronScheduleStatus;
 
 /**
  * Class ErrorHandler
@@ -11,7 +14,7 @@ use yii\web\HttpException;
 class ErrorHandler extends \yii\console\ErrorHandler
 {
     /**
-     * @var Schedule model
+     * @var CronScheduleModel model
      */
     public $schedule;
 
@@ -20,7 +23,7 @@ class ErrorHandler extends \yii\console\ErrorHandler
      *
      * @param \Exception $exception the exception to be logged
      */
-    protected function logException($exception)
+    public function logException($exception)
     {
         $category = get_class($exception);
         if ($exception instanceof HttpException) {
@@ -29,7 +32,7 @@ class ErrorHandler extends \yii\console\ErrorHandler
             $category .= ':' . $exception->getSeverity();
         }
         if ($this->schedule) {
-            $this->schedule->endCronSchedule('error', (string)$exception);
+            $this->schedule->endCronSchedule(CronScheduleStatus::ERROR, (string)$exception);
             $this->schedule = null;
         }
         \Yii::error((string)$exception, $category);

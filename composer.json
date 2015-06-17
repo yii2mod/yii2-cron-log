@@ -5,14 +5,21 @@
     "keywords": ["yii2", "extension"],
     "license": "Apache-2.0",
     "authors": [
-        {
-            "name": "Dmitry Semenov",
-            "email": "disemx@gmail.com"
-        }
+      {
+        "name": "Dmitry Semenov",
+        "email": "disemx@gmail.com"
+      },
+      {
+        "name": "Igor Chepurnoy",
+        "email": "igorzfort@gmail.com"
+      }
     ],
+    "require": {
+      "yii2mod/yii2-enum": "dev-master"
+    },
     "autoload": {
-        "psr-4": {
-            "yii2mod\\cron\\": ""
-        }
+      "psr-4": {
+        "yii2mod\\cron\\": ""
+      }
     }
 }

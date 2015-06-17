@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: semenov
- * Date: 04.07.14
- * Time: 20:31
- */
 
 namespace yii2mod\cron\actions;
-
 
 use yii\base\Action;
 use yii\data\ActiveDataProvider;
@@ -25,7 +18,7 @@ class CronLogAction extends Action
     public $view = '@vendor/yii2mod/yii2-cron-log/views/index';
 
     /**
-     *
+     * Run action
      */
     public function run()
     {

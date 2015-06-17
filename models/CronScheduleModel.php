@@ -1,9 +1,11 @@
 <?php
+
 namespace yii2mod\cron\models;
 
 use Yii;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
+use yii2mod\cron\models\enumerables\CronScheduleStatus;
 
 /**
  * This is the model class for table "CronSchedule".
@@ -19,16 +21,19 @@ use yii\db\Expression;
  */
 class CronScheduleModel extends ActiveRecord
 {
+
     /**
-     * @inheritdoc
+     * Declares the name of the database table associated with this AR class.
+     * @return string the table name
      */
     public static function tableName()
     {
-        return 'CronSchedule';
+        return '{{%CronSchedule}}';
     }
 
     /**
-     * @inheritdoc
+     * Returns the validation rules for attributes.
+     * @return array validation rules
      */
     public function rules()
     {
@@ -36,12 +41,13 @@ class CronScheduleModel extends ActiveRecord
             [['messages'], 'string'],
             [['dateCreated', 'dateScheduled', 'dateExecuted', 'dateFinished'], 'safe'],
             [['jobCode'], 'string', 'max' => 255],
-            [['status'], 'string', 'max' => 255]
+            ['status', 'integer'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * Returns the attribute labels.
+     * @return array attribute labels (name => label)
      */
     public function attributeLabels()
     {
@@ -59,38 +65,30 @@ class CronScheduleModel extends ActiveRecord
 
 
     /**
-     *
-     * @author   Roman Protsenko <protsenko@zfort.com>
+     * Start cron schedule
      *
      * @param string $jobCode
-     * @param string $status
-     * @param null   $messages
-     *
-     * @internal param string $message
-     * @return boolean
+     * @param int $status
+     * @param null $messages
+     * @return bool
      */
-    public function startCronSchedule($jobCode, $status = null, $messages = null)
+    public function startCronSchedule($jobCode, $status = CronScheduleStatus::RUN, $messages = null)
     {
-        if ($status === null) {
-            $status = 'running';
-        }
         $this->jobCode = $jobCode;
         $this->status = $status;
         $this->messages = $messages;
-
         $this->dateScheduled = new Expression('NOW()');
         $this->dateExecuted = new Expression('NOW()');
+
         return $this->save();
     }
 
     /**
-     *
-     * @author   Roman Protsenko <protsenko@zfort.com>
+     * End cron schedule
      *
      * @param string $status
-     * @param null   $messages
+     * @param null $messages
      *
-     * @internal param string $message
      * @return boolean
      */
     public function endCronSchedule($status, $messages = null)
