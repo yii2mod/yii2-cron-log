@@ -17,7 +17,7 @@ use yii\console\Controller;
  *         return array(
  *             'mutexBehavior' => array(
  *                 'class' => 'yii2mod\cron\behaviors\MutexConsoleCommandBehavior',
- *                 'mutexActions' => array('index'),
+ *                 'mutexActions' => array('index'),  // OR ['*'] - attach to all actions
  *             ),
  *         );
  *     }
@@ -84,7 +84,7 @@ class MutexConsoleCommandBehavior extends Behavior
      */
     public function checkIsMutexAction($action)
     {
-        return in_array(strtolower($action), $this->mutexActions);
+        return in_array(strtolower($action), $this->mutexActions) || in_array('*', $this->mutexActions);
     }
 
 
