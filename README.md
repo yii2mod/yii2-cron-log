@@ -69,15 +69,15 @@ To log cron actions you should add behavior to all commands that should be logge
     */
     public function behaviors()
     {
-        return array(
-            'cronLogger' => array(
+        return [
+            'cronLogger' => [
                 'class' => 'yii2mod\cron\behaviors\CronLoggerBehavior',
-                'actions' => array( // action names that should be logged
+                'actions' => [ // action names that should be logged
                     'index', 
-                    'test
-                ),
-            ),
-        );
+                    'test'
+                ],
+            ],
+        ];
     }
 ```
 As the result, you will be able to view list of cron runs at ```http://project.com/admin/settings/cron``` which contains: 
