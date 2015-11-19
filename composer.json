@@ -15,7 +15,7 @@
       }
     ],
     "require": {
-      "yii2mod/yii2-enum": "dev-master"
+      "yii2mod/yii2-enum": ">=1.1"
     },
     "autoload": {
       "psr-4": {
