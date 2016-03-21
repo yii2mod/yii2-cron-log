@@ -1,36 +1,34 @@
 <?php
+
 namespace yii2mod\cron\behaviors;
 
+use Yii;
 use yii\base\Behavior;
 use yii\console\Controller;
+use yii\mutex\Mutex;
 
 
 /**
  * MutexConsoleCommandBehavior allows console command actions being run with mutex protection.
  *
  * Usage:
- * <code>
+ * ```
  * class MyCommand extends Controller
  * {
  *     public function behaviors()
  *     {
- *         return array(
- *             'mutexBehavior' => array(
+ *         return [
+ *             'mutexBehavior' => [
  *                 'class' => 'yii2mod\cron\behaviors\MutexConsoleCommandBehavior',
- *                 'mutexActions' => array('index'),  // OR ['*'] - attach to all actions
- *             ),
- *         );
+ *                 'mutexActions' => ['index'],  // OR ['*'] - attach to all actions
+ *             ]
+ *         ];
  *     }
  * }
- * </code>
+ * ```
  *
- * @method \Controller getOwner()
- *
- * @author  Klimov Paul <klimov@zfort.com>
- * @author  Dmitry Semenov <disemx@gmail.com>
- * @version $Id$
+ * Class MutexConsoleCommandBehavior
  * @package yii2mod\cron\behaviors
- * @since   1.0
  */
 class MutexConsoleCommandBehavior extends Behavior
 {
@@ -41,7 +39,7 @@ class MutexConsoleCommandBehavior extends Behavior
     /**
      * @var array list of action names, which mutex should be applied to.
      */
-    public $mutexActions = array();
+    public $mutexActions = [];
 
 
     /**
@@ -60,7 +58,7 @@ class MutexConsoleCommandBehavior extends Behavior
      */
     public function getMutex()
     {
-        return \Yii::$app->get($this->mutex);
+        return Yii::$app->get($this->mutex);
     }
 
     /**
