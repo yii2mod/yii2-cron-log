@@ -1,4 +1,4 @@
-Cron log
+Yii2 Cron Log
 =============
 Component for logging cron jobs
 
