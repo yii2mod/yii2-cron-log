@@ -2,6 +2,8 @@ Cron log
 =============
 Component for logging cron jobs
 
+[![Latest Stable Version](https://poser.pugx.org/yii2mod/yii2-cron-log/v/stable)](https://packagist.org/packages/yii2mod/yii2-cron-log) [![Total Downloads](https://poser.pugx.org/yii2mod/yii2-cron-log/downloads)](https://packagist.org/packages/yii2mod/yii2-cron-log) [![License](https://poser.pugx.org/yii2mod/yii2-cron-log/license)](https://packagist.org/packages/yii2mod/yii2-cron-log)
+
 Installation
 ------------
 
