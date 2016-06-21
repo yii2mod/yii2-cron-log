@@ -61,7 +61,7 @@ To use this extension you need define action in any controller (for example /mod
         ];
     }
 ```
-This action is used to view list of executed commands. // http://project.com/admin/settings/cron
+This action is used to view list of executed commands. http://project.com/admin/settings/cron
 
 
 To log cron actions you should add behavior to all commands that should be logged.
