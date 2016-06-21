@@ -5,6 +5,7 @@ namespace yii2mod\cron\behaviors;
 use Yii;
 use yii\base\Behavior;
 use yii\console\Controller;
+use yii\helpers\ArrayHelper;
 use yii2mod\cron\models\CronScheduleModel;
 use yii2mod\cron\models\enumerables\CronScheduleStatus;
 
@@ -69,7 +70,7 @@ class CronLoggerBehavior extends Behavior
     {
         if (in_array($event->action->id, $this->actions) || in_array('*', $this->actions)) {
             $sender = $event->sender;
-            $command = $sender->id . '/' . $sender->action->id;
+            $command = $sender->id . '/' . $sender->action->id . $this->getActionParams();
             $this->schedule = new CronScheduleModel();
             $this->schedule->startCronSchedule($command);
             $this->setupApplicationErrorHandlers();
@@ -100,5 +101,27 @@ class CronLoggerBehavior extends Behavior
     {
         $errorHandler = Yii::$app->get('errorHandler');
         $errorHandler->schedule = &$this->schedule;
+    }
+
+    /**
+     * Get action params
+     *
+     * @return string
+     */
+    private function getActionParams()
+    {
+        $result = '';
+        $requestParams = Yii::$app->request->getParams();
+        ArrayHelper::remove($requestParams, 0);
+
+        foreach ($requestParams as $key => $value) {
+            if (is_string($key)) {
+                $result .= " --{$key}={$value}";
+            } else {
+                $result .= " {$value}";
+            }
+        }
+
+        return $result;
     }
 }
