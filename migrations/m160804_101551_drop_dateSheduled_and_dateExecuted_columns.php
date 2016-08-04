@@ -10,7 +10,7 @@ class m160804_101551_drop_dateSheduled_and_dateExecuted_columns extends Migratio
         $this->dropColumn('{{%CronSchedule}}', 'dateExecuted');
 
         $this->dropIndex('idx-CronSchedule-dateScheduled-status', '{{%CronSchedule}}');
-        $this->createIndex('idx-CronSchedule-status', '{{%CronSchedule}}', ['status']);
+        $this->createIndex('idx-CronSchedule-status', '{{%CronSchedule}}', 'status');
     }
 
     public function down()
