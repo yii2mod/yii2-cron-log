@@ -34,5 +34,4 @@ class CronLogAction extends Action
             'dataProvider' => $dataProvider
         ]);
     }
-
-} 
+}

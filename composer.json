@@ -2,7 +2,7 @@
     "name": "yii2mod/yii2-cron-log",
     "description": "Component for logging cron jobs",
     "type": "yii2-extension",
-    "keywords": ["yii2", "extension"],
+    "keywords": ["yii2 cron log", "cron log", "logging cron jobs"],
     "license": "MIT",
     "authors": [
       {
@@ -15,7 +15,7 @@
       }
     ],
     "require": {
-      "yiisoft/yii2": "*",
+      "yiisoft/yii2": ">=2.0.8",
       "yii2mod/yii2-enum": ">=1.1"
     },
     "autoload": {

@@ -2,7 +2,6 @@
 
 namespace yii2mod\cron\components;
 
-use Yii;
 use yii\web\HttpException;
 use yii2mod\cron\models\CronScheduleModel;
 use yii2mod\cron\models\enumerables\CronScheduleStatus;
@@ -37,5 +36,4 @@ class ErrorHandler extends \yii\console\ErrorHandler
         }
         \Yii::error((string)$exception, $category);
     }
-
-} 
+}

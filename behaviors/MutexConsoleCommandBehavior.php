@@ -7,7 +7,6 @@ use yii\base\Behavior;
 use yii\console\Controller;
 use yii\mutex\Mutex;
 
-
 /**
  * MutexConsoleCommandBehavior allows console command actions being run with mutex protection.
  *
@@ -36,11 +35,11 @@ class MutexConsoleCommandBehavior extends Behavior
      * @var string name of the mutex application component.
      */
     public $mutex = 'mutex';
+
     /**
      * @var array list of action names, which mutex should be applied to.
      */
     public $mutexActions = [];
-
 
     /**
      * @inheritdoc
@@ -85,7 +84,6 @@ class MutexConsoleCommandBehavior extends Behavior
         return in_array(strtolower($action), $this->mutexActions) || in_array('*', $this->mutexActions);
     }
 
-
     /**
      * @param $event
      * @return bool
@@ -101,7 +99,6 @@ class MutexConsoleCommandBehavior extends Behavior
             }
         }
     }
-
 
     /**
      * @param $event
