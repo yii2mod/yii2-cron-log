@@ -67,11 +67,12 @@ Usage
 > This action is used to view list of executed commands: http://project.com/admin/settings/cron
 
 
-2) To log cron actions you should add behavior to all commands that should be logged.
+2) To log cron actions you should add behavior to all commands that should be logged. In the following example `CronLoggerBehavior` will be log the `index` action.
 
 ```php
 
 namespace app\commands;
+
 use yii\console\Controller;
 
 /**
