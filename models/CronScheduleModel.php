@@ -15,16 +15,12 @@ use yii2mod\cron\models\enumerables\CronScheduleStatus;
  * @property string $status
  * @property string $messages
  * @property string $dateCreated
- * @property string $dateScheduled
- * @property string $dateExecuted
  * @property string $dateFinished
  */
 class CronScheduleModel extends ActiveRecord
 {
-
     /**
-     * Declares the name of the database table associated with this AR class.
-     * @return string the table name
+     * @inheritdoc
      */
     public static function tableName()
     {
@@ -32,37 +28,32 @@ class CronScheduleModel extends ActiveRecord
     }
 
     /**
-     * Returns the validation rules for attributes.
-     * @return array validation rules
+     * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['messages'], 'string'],
-            [['dateCreated', 'dateScheduled', 'dateExecuted', 'dateFinished'], 'safe'],
-            [['jobCode'], 'string', 'max' => 255],
+            ['messages', 'string'],
+            ['jobCode', 'string', 'max' => 255],
             ['status', 'integer'],
+            [['dateCreated', 'dateFinished'], 'safe'],
         ];
     }
 
     /**
-     * Returns the attribute labels.
-     * @return array attribute labels (name => label)
+     * @inheritdoc
      */
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('cron', 'ID'),
-            'jobCode' => Yii::t('cron', 'Job Code'),
-            'status' => Yii::t('cron', 'Status'),
-            'messages' => Yii::t('cron', 'Messages'),
-            'dateCreated' => Yii::t('cron', 'Date Created'),
-            'dateScheduled' => Yii::t('cron', 'Date Scheduled'),
-            'dateExecuted' => Yii::t('cron', 'Date Executed'),
-            'dateFinished' => Yii::t('cron', 'Date Finished'),
+            'id' => Yii::t('yii2mod-cron-log', 'ID'),
+            'jobCode' => Yii::t('yii2mod-cron-log', 'Job Code'),
+            'status' => Yii::t('yii2mod-cron-log', 'Status'),
+            'messages' => Yii::t('yii2mod-cron-log', 'Messages'),
+            'dateCreated' => Yii::t('yii2mod-cron-log', 'Date Created'),
+            'dateFinished' => Yii::t('yii2mod-cron-log', 'Date Finished'),
         ];
     }
-
 
     /**
      * Start cron schedule
@@ -77,8 +68,7 @@ class CronScheduleModel extends ActiveRecord
         $this->jobCode = $jobCode;
         $this->status = $status;
         $this->messages = $messages;
-        $this->dateScheduled = new Expression('NOW()');
-        $this->dateExecuted = new Expression('NOW()');
+        $this->dateCreated = new Expression('NOW()');
 
         return $this->save();
     }
@@ -97,11 +87,10 @@ class CronScheduleModel extends ActiveRecord
             $this->dateFinished = new Expression('NOW()');
             $this->status = $status;
             $this->messages = $messages;
+
             return $this->save();
         }
+
         return false;
     }
 }
-
-
-

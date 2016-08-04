@@ -75,19 +75,32 @@ To log cron actions you should add behavior to all commands that should be logge
             'cronLogger' => [
                 'class' => 'yii2mod\cron\behaviors\CronLoggerBehavior',
                 'actions' => [ // action names that should be logged
-                    'index', 
-                    'test'
+                    'index' 
                 ],
             ],
         ];
     }
 ```
-As the result, you will be able to view list of cron runs at ```http://project.com/admin/settings/cron``` which contains: 
-* ID	auto-increment
-* Job Code - name of the action
-* Status	- return code (0 for success)
-* Messages	- exception trace
-* Date Created	
-* Date Scheduled	
-* Date Executed	
-* Date Finished
+
+## Internationalization
+
+All text and messages introduced in this extension are translatable under category 'yii2mod-cron-log'.
+You may use translations provided within this extension, using following application configuration:
+
+```php
+return [
+    'components' => [
+        'i18n' => [
+            'translations' => [
+                'yii2mod-cron-log' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@yii2mod/cron/messages',
+                ],
+                // ...
+            ],
+        ],
+        // ...
+    ],
+    // ...
+];
+```

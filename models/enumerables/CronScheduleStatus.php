@@ -14,9 +14,17 @@ class CronScheduleStatus extends BaseEnum
     const ERROR = 1;
     const RUN = 2;
 
+    /**
+     * @var string message category
+     */
+    public static $messageCategory = 'yii2mod-cron-log';
+
+    /**
+     * @var array
+     */
     public static $list = [
+        self::SUCCESS => 'Success',
         self::ERROR => 'Error',
-        self::RUN => 'Run',
-        self::SUCCESS => 'Complete',
+        self::RUN => 'Run'
     ];
 }
