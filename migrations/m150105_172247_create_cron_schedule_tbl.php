@@ -26,7 +26,7 @@ class m150105_172247_create_cron_schedule_tbl extends Migration
             'dateFinished' => $this->timestamp()->null(),
         ], $tableOptions);
 
-        $this->createIndex('idx-CronSchedule-jobCode', '{{%CronSchedule}}', ['jobCode']);
+        $this->createIndex('idx-CronSchedule-jobCode', '{{%CronSchedule}}', 'jobCode');
         $this->createIndex('idx-CronSchedule-dateScheduled-status', '{{%CronSchedule}}', ['dateScheduled', 'status']);
     }
 
