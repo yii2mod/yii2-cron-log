@@ -23,36 +23,38 @@ or add
 
 to the require section of your composer.json.
 
-run
+Configuration
+-----------------------
+
+**Database Migrations**
+
+Before using this extension, we'll also need to prepare the database.
 ```php
 php yii migrate/up --migrationPath=@yii2mod/cron/migrations
 ```
-Please note that messages are wrapped with ```Yii::t()``` to support message translations, you should define default message source for them if you don't use i18n.
+
+**Error Handler and File Mutex Setup**
+
+Error handler must be defined inside console config, it will be used to log exceptions into database.
+
+> FileMutex implements mutex "lock" mechanism via local file system files.
+
+Add the following code to your console application configuration:
 ```php
-'i18n' => [
-    'translations' => [
-        '*' => [
-            'class' => 'yii\i18n\PhpMessageSource'
-        ],
+'components' => [
+    'errorHandler' => [
+        'class' => 'yii2mod\cron\components\ErrorHandler',
+    ],
+    'mutex' => [
+        'class' => 'yii\mutex\FileMutex'
     ],
 ],
 ```
 
 Usage
-------------
-Error handler must be defined inside console config, it will be used to log exceptions into database.
-```php
-'components' => [
-        'errorHandler' => [
-            'class' => 'yii2mod\cron\components\ErrorHandler',
-        ],
-        'mutex' => [
-            'class' => 'yii\mutex\FileMutex'
-        ],
-    ],
-```
+----------
+1) To access the list of executed commands, you need to define `CronLogAction` in any controller (for example /modules/admin/SettingsController.php):
 
-To use this extension you need define action in any controller (for example /modules/admin/SettingsController.php)
 ```php
     public function actions()
     {
@@ -61,25 +63,44 @@ To use this extension you need define action in any controller (for example /mod
         ];
     }
 ```
-This action is used to view list of executed commands. http://project.com/admin/settings/cron
+
+> This action is used to view list of executed commands: http://project.com/admin/settings/cron
 
 
-To log cron actions you should add behavior to all commands that should be logged.
+2) To log cron actions you should add behavior to all commands that should be logged.
+
 ```php
-    /**
-     * @return array behavior configurations.
-    */
+
+namespace app\commands;
+use yii\console\Controller;
+
+/**
+ * This command echoes the first argument that you have entered.
+ *
+ * This command is provided as an example for you to learn how to create console commands.
+ *
+ */
+class HelloController extends Controller
+{
     public function behaviors()
     {
         return [
             'cronLogger' => [
                 'class' => 'yii2mod\cron\behaviors\CronLoggerBehavior',
-                'actions' => [ // action names that should be logged
-                    'index' 
-                ],
+                'actions' => ['index']
             ],
         ];
     }
+
+    /**
+     * This command echoes what you have entered as the message.
+     * @param string $message the message to be echoed.
+     */
+    public function actionIndex($message = 'hello world')
+    {
+        echo $message . "\n";
+    }
+}
 ```
 
 ## Internationalization
