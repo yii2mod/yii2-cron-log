@@ -4,7 +4,6 @@ namespace yii2mod\cron\models;
 
 use Yii;
 use yii\db\ActiveRecord;
-use yii\db\Expression;
 use yii2mod\cron\models\enumerables\CronScheduleStatus;
 
 /**
@@ -68,7 +67,7 @@ class CronScheduleModel extends ActiveRecord
         $this->jobCode = $jobCode;
         $this->status = $status;
         $this->messages = $messages;
-        $this->dateCreated = new Expression('NOW()');
+        $this->dateCreated = Yii::$app->formatter->asDatetime(time(), 'php: Y-m-d H:i:s');
 
         return $this->save();
     }
@@ -84,7 +83,7 @@ class CronScheduleModel extends ActiveRecord
     public function endCronSchedule($status, $messages = null)
     {
         if ($this->id) {
-            $this->dateFinished = new Expression('NOW()');
+            $this->dateFinished = Yii::$app->formatter->asDatetime(time(), 'php: Y-m-d H:i:s');
             $this->status = $status;
             $this->messages = $messages;
 
