@@ -90,6 +90,11 @@ class HelloController extends Controller
                 'class' => 'yii2mod\cron\behaviors\CronLoggerBehavior',
                 'actions' => ['index']
             ],
+            // Example of usage the `MutexConsoleCommandBehavior`
+            'mutexBehavior' => [
+                'class' => 'yii2mod\cron\behaviors\MutexConsoleCommandBehavior',
+                'mutexActions' => ['index'],
+            ]
         ];
     }
 
