@@ -1,6 +1,6 @@
 <?php
 
-use app\components\Migration;
+use yii\db\Migration;
 
 class m160804_101551_drop_dateSheduled_and_dateExecuted_columns extends Migration
 {
