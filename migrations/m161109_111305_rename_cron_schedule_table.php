@@ -1,6 +1,6 @@
 <?php
 
-use app\components\Migration;
+use yii\db\Migration;
 
 class m161109_111305_rename_cron_schedule_table extends Migration
 {
