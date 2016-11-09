@@ -79,7 +79,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
         // Structure :
 
-        $db->createCommand()->createTable('{{%CronSchedule}}', [
+        $db->createCommand()->createTable('{{%cron_schedule}}', [
             'id' => 'pk',
             'jobCode' => 'string not null',
             'status' => 'smallint not null',
