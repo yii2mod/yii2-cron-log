@@ -60,6 +60,12 @@ Usage
     {
         return [
             'cron' => 'yii2mod\cron\actions\CronLogAction',
+            // Also you can override some action properties in following way:
+            'searchClass' => [
+                'class' => 'yii2mod\cron\models\search\CronScheduleSearch',
+                'pageSize' => 10
+            ],
+            'view' => 'custom name of the view, which should be rendered.'
         ];
     }
 ```
