@@ -7,12 +7,13 @@ use yii2mod\cron\models\CronScheduleModel;
 
 /**
  * Class CronScheduleSearch
+ *
  * @package yii2mod\cron\models\search
  */
 class CronScheduleSearch extends CronScheduleModel
 {
     /**
-     * @var int the default page size.
+     * @var int the default page size
      */
     public $pageSize = 25;
 
@@ -41,8 +42,8 @@ class CronScheduleSearch extends CronScheduleModel
             'query' => $query,
             'sort' => ['defaultOrder' => ['id' => SORT_DESC]],
             'pagination' => [
-                'pageSize' => $this->pageSize
-            ]
+                'pageSize' => $this->pageSize,
+            ],
         ]);
 
         if (!($this->load($params) && $this->validate())) {

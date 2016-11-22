@@ -40,7 +40,7 @@ class CronLoggerBehavior extends Behavior
     protected $schedule;
 
     /**
-     * @var array list of action names, which should be logged.
+     * @var array list of action names, which should be logged
      */
     public $actions = [];
 
@@ -52,7 +52,7 @@ class CronLoggerBehavior extends Behavior
     /**
      * Declares event handlers for the [[owner]]'s events.
      *
-     * @return array events (array keys) and the corresponding event handler methods (array values).
+     * @return array events (array keys) and the corresponding event handler methods (array values)
      */
     public function events()
     {
@@ -64,6 +64,7 @@ class CronLoggerBehavior extends Behavior
 
     /**
      * Before action
+     *
      * @param $event \yii\base\ActionEvent
      */
     public function beforeAction($event)
@@ -79,6 +80,7 @@ class CronLoggerBehavior extends Behavior
 
     /**
      * After action
+     *
      * @param $event \yii\base\ActionEvent
      */
     public function afterAction($event)

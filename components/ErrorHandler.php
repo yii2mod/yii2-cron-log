@@ -8,6 +8,7 @@ use yii2mod\cron\models\enumerables\CronScheduleStatus;
 
 /**
  * Class ErrorHandler
+ *
  * @package yii2mod\cron\components
  */
 class ErrorHandler extends \yii\console\ErrorHandler

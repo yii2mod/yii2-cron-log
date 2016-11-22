@@ -27,17 +27,18 @@ use yii\mutex\Mutex;
  * ```
  *
  * Class MutexConsoleCommandBehavior
+ *
  * @package yii2mod\cron\behaviors
  */
 class MutexConsoleCommandBehavior extends Behavior
 {
     /**
-     * @var string name of the mutex application component.
+     * @var string name of the mutex application component
      */
     public $mutex = 'mutex';
 
     /**
-     * @var array list of action names, which mutex should be applied to.
+     * @var array list of action names, which mutex should be applied to
      */
     public $mutexActions = [];
 
@@ -53,7 +54,7 @@ class MutexConsoleCommandBehavior extends Behavior
     }
 
     /**
-     * @return Mutex mutex application component instance.
+     * @return Mutex mutex application component instance
      */
     public function getMutex()
     {
@@ -63,9 +64,9 @@ class MutexConsoleCommandBehavior extends Behavior
     /**
      * Composes the mutex name.
      *
-     * @param string $action command action name.
+     * @param string $action command action name
      *
-     * @return string mutex name.
+     * @return string mutex name
      */
     protected function composeMutexName($action)
     {
@@ -75,9 +76,9 @@ class MutexConsoleCommandBehavior extends Behavior
     /**
      * Checks if specified action is among mutex actions.
      *
-     * @param string $action action name.
+     * @param string $action action name
      *
-     * @return boolean whether action should be under mutex.
+     * @return bool whether action should be under mutex
      */
     public function checkIsMutexAction($action)
     {
@@ -86,6 +87,7 @@ class MutexConsoleCommandBehavior extends Behavior
 
     /**
      * @param $event
+     *
      * @return bool
      */
     public function beforeAction($event)
@@ -95,6 +97,7 @@ class MutexConsoleCommandBehavior extends Behavior
             if (!$this->getMutex()->acquire($mutexName)) {
                 echo "Execution terminated: command is already running.\n";
                 $event->isValid = false;
+
                 return false;
             }
         }

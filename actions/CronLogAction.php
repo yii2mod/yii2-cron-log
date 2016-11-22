@@ -7,12 +7,13 @@ use yii\base\Action;
 
 /**
  * Class CronLogAction
+ *
  * @package yii2mod\cron\actions
  */
 class CronLogAction extends Action
 {
     /**
-     * @var string name of the view, which should be rendered.
+     * @var string name of the view, which should be rendered
      */
     public $view = '@vendor/yii2mod/yii2-cron-log/views/index';
 
@@ -31,7 +32,7 @@ class CronLogAction extends Action
 
         return $this->controller->render($this->view, [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider
+            'dataProvider' => $dataProvider,
         ]);
     }
 }

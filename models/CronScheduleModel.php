@@ -60,6 +60,7 @@ class CronScheduleModel extends ActiveRecord
      * @param string $jobCode
      * @param int $status
      * @param null $messages
+     *
      * @return bool
      */
     public function startCronSchedule($jobCode, $status = CronScheduleStatus::RUN, $messages = null)
@@ -78,7 +79,7 @@ class CronScheduleModel extends ActiveRecord
      * @param string $status
      * @param null $messages
      *
-     * @return boolean
+     * @return bool
      */
     public function endCronSchedule($status, $messages = null)
     {

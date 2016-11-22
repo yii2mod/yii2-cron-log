@@ -1,7 +1,7 @@
 <?php
 
-use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Html;
 use yii\widgets\Pjax;
 use yii2mod\cron\models\enumerables\CronScheduleStatus;
 
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'messages:ntext',
             'dateCreated',
             'dateFinished',
-        ]
+        ],
     ]); ?>
     <?php Pjax::end(); ?>
 </div>

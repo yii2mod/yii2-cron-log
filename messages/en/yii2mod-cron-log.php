@@ -27,5 +27,5 @@ return [
     'Status' => 'Status',
     'Success' => 'Success',
     'Error' => 'Error',
-    'Run' => 'Run'
+    'Run' => 'Run',
 ];

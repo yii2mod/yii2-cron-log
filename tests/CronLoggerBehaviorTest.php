@@ -8,6 +8,7 @@ use yii2mod\cron\models\CronScheduleModel;
 
 /**
  * Class CronLoggerBehaviorTest
+ *
  * @package yii2mod\cron\tests
  */
 class CronLoggerBehaviorTest extends TestCase

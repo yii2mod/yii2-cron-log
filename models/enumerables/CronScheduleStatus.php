@@ -6,6 +6,7 @@ use yii2mod\enum\helpers\BaseEnum;
 
 /**
  * Class CronScheduleStatus
+ *
  * @package yii2mod\cron\models\enumerables
  */
 class CronScheduleStatus extends BaseEnum
@@ -25,6 +26,6 @@ class CronScheduleStatus extends BaseEnum
     public static $list = [
         self::SUCCESS => 'Success',
         self::ERROR => 'Error',
-        self::RUN => 'Run'
+        self::RUN => 'Run',
     ];
 }
