@@ -14,8 +14,8 @@
             "email": "disemx@gmail.com"
         },
         {
-            "name": "Igor Chepurnoy",
-            "email": "igorzfort@gmail.com"
+            "name": "Igor Chepurnoi",
+            "email": "chepurnoi.igor@gmail.com"
         }
     ],
     "require": {
@@ -29,5 +29,11 @@
         "psr-4": {
             "yii2mod\\cron\\": ""
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
 }

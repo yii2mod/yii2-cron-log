@@ -1,6 +1,12 @@
-Yii2 Cron Log
-=============
-Component for logging cron jobs
+<p align="center">
+    <a href="https://github.com/yiisoft" target="_blank">
+        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
+    </a>
+    <h1 align="center">Yii2 Cron Log Extension</h1>
+    <br>
+</p>
+
+Component for logging cron jobs.
 
 [![Latest Stable Version](https://poser.pugx.org/yii2mod/yii2-cron-log/v/stable)](https://packagist.org/packages/yii2mod/yii2-cron-log) [![Total Downloads](https://poser.pugx.org/yii2mod/yii2-cron-log/downloads)](https://packagist.org/packages/yii2mod/yii2-cron-log) [![License](https://poser.pugx.org/yii2mod/yii2-cron-log/license)](https://packagist.org/packages/yii2mod/yii2-cron-log) [![Build Status](https://travis-ci.org/yii2mod/yii2-cron-log.svg?branch=master)](https://travis-ci.org/yii2mod/yii2-cron-log)
 
@@ -17,7 +23,7 @@ php composer.phar require --prefer-dist yii2mod/yii2-cron-log "*"
 
 or add
 
-```json
+```
 "yii2mod/yii2-cron-log": "*"
 ```
 
