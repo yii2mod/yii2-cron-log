@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cron-schedule-model-index">
 
-    <h1><?php echo Html::encode($this->title) ?></h1>
+    <h1><?php echo Html::encode($this->title); ?></h1>
     <?php Pjax::begin(['timeout' => 5000]); ?>
     <?php echo GridView::widget([
         'dataProvider' => $dataProvider,
