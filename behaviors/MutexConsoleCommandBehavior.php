@@ -43,6 +43,12 @@ class MutexConsoleCommandBehavior extends Behavior
     public $mutexActions = [];
 
     /**
+     * @var int time (in seconds) to wait for lock to be released. Defaults to zero meaning that method will return
+     * false immediately in case lock was already acquired.
+     */
+    public $timeout = 0;
+
+    /**
      * @inheritdoc
      */
     public function events()
@@ -94,7 +100,7 @@ class MutexConsoleCommandBehavior extends Behavior
     {
         if ($this->checkIsMutexAction($event->action->id)) {
             $mutexName = $this->composeMutexName($event->action->id);
-            if (!$this->getMutex()->acquire($mutexName)) {
+            if (!$this->getMutex()->acquire($mutexName, $this->timeout)) {
                 echo "Execution terminated: command is already running.\n";
                 $event->isValid = false;
 

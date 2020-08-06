@@ -109,6 +109,7 @@ class HelloController extends Controller
             'mutexBehavior' => [
                 'class' => 'yii2mod\cron\behaviors\MutexConsoleCommandBehavior',
                 'mutexActions' => ['index'],
+                'timeout' => 3600, //default 0
             ]
         ];
     }
